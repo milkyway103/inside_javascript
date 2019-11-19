@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>3. 자바스크립트 데이터 타입과 연산자 (1)</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="created" content="2019-11-15T18:48:59+0900"/>
+        <meta name="modified" content="2019-11-15T19:48:48+0900"/>
+        <meta name="tags" content="책, 책/인사이드자바스크립트"/>
+        <meta name="last device" content="김은하의 MacBook Pro"/>
+    </head>
+    <body>
+        <div class="note-wrapper">
+            <h1>3. 자바스크립트 데이터 타입과 연산자 (1)</h1>
+<p>모든 언어의 기본은 데이터 타입을 파악하는 것에서부터 시작.</p>
+<p>자바스크립트의 값들은 크게 기본 타입과 참조 타입으로 나뉜다.</p>
+<br>
+<pre><code class='code-multiline'>├─자바스크립트 데이터 타입
+│  ├─기본 타입
+│  │      숫자(Number)
+│  │      문자열(String)
+│  │      불린값(Boolean)
+│  │      Undefined
+│  │      null
+│  └─참조 타입
+│      └─ 객체
+│			배열(Array)
+│			함수(Function)
+│			정규표현식</code></pre>
+<p><br></p>
+<p>이번 장에서 다루는 내용들</p>
+<ul><li>기본 데이터 타입(숫자, 문자열, 불린값, null, undefined
+</li><li>참조 데이터 타입(객체, 배열)
+</li><li>주의해야 할 연산자
+</li></ul>
+<br>
+<h1>3.1 자바스크립트 기본 타입</h1>
+<p>자바스크립트에서 기본 타입 : <b>숫자</b>, <b>문자열</b>, <b>불린값</b>, <b>null</b>, <b>undefined</b></p>
+<p>특징 : 그 자체가 하나의 값을 나타낸다.</p>
+<br>
+<p>자바스크립트는 <b>느슨한 타입 체크 언어</b></p>
+<p>엄격한 타입 체크 언어인 C 언어는 변수를 선언할 때 변수에 저장할 데이터의 종류(문자, 정수, 실수 등)에 따라 char, int, float 등의 예약어를 이용해서 변수의 데이터 타입을 지정해야 한다. 그리고 이렇게 지정된 변수의 데이터 타입에 맞게 해당 변수에 값을 저장하고 사용하는 것이 일반적.</p>
+<p>반면 자바스크립트는 변수를 선언할 때 타입을 미리 정하지 않고, var라는 한 가지 키워드로만 변수를 선언.</p>
+<p>이렇게 선언된 변수에는 어떤 타입의 데이터라도 저장하는 것이 가능.</p>
+<p>따라서 <mark>자바스크립트는 변수에 어떤 형태의 데이터를 저장하느냐에 따라 해당 변수의 타입이 결정</mark>됨.</p>
+<br>
+<p>예제 <span class='arrow'><svg width="11px" height="10px" viewBox="0 0 11 10" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >    <g id="right-arrow" >        <path d="M1.77635684e-14,5 L9,5" id="rod" stroke="#000000" stroke-width="2" ></path>        <path d="M11,5 L6,0.5 L6,9.5 L11,5 Z" id="point" fill="#000000"></path>    </g></svg></span> 기본 타입의 변수들을 생성하고, 해당 변수의 타입을 자바스크립트의 typeof 연산자를 이용해 출력한 것.</p>
+<p>typeof 연산자는 피연산자의 타입을 리턴.</p>
+<br>
+<p>예제 3-1 자바스크립트 기본 타입</p>
+<pre><code class='code-multiline' lang='javascript'><span class="sf_code_comment">// 숫자 타입</span>
+<span class="sf_code_keyword">var</span> intNum <span class="sf_code_operator">=</span> <span class="sf_code_number">10</span><span class="sf_code_punctuation">;</span>
+<span class="sf_code_keyword">var</span> floatNum <span class="sf_code_operator">=</span> <span class="sf_code_number">0.1</span><span class="sf_code_punctuation">;</span>
+
+<span class="sf_code_comment">// 문자열 타입</span>
+<span class="sf_code_keyword">var</span> singleQuoteStr <span class="sf_code_operator">=</span> <span class="sf_code_string">'single quote string'</span><span class="sf_code_punctuation">;</span>
+<span class="sf_code_keyword">var</span> doubleQuoteStr <span class="sf_code_operator">=</span> <span class="sf_code_string">"double quote string"</span><span class="sf_code_punctuation">;</span>
+<span class="sf_code_keyword">var</span> singleChar <span class="sf_code_operator">=</span> <span class="sf_code_string">'a'</span><span class="sf_code_punctuation">;</span>
+
+<span class="sf_code_comment">// 불린 타입</span>
+<span class="sf_code_keyword">var</span> boolVar <span class="sf_code_operator">=</span> <span class="sf_code_boolean">true</span><span class="sf_code_punctuation">;</span>
+
+<span class="sf_code_comment">// undefined 타입</span>
+<span class="sf_code_keyword">var</span> emptyVar<span class="sf_code_punctuation">;</span>
+
+<span class="sf_code_comment">// null 타입</span>
+<span class="sf_code_keyword">var</span> nullVar <span class="sf_code_operator">=</span> <span class="sf_code_keyword">null</span><span class="sf_code_punctuation">;</span>
+
+console<span class="sf_code_punctuation">.</span><span class="sf_code_function">log</span><span class="sf_code_punctuation">(</span>
+    <span class="sf_code_keyword">typeof</span> intNum<span class="sf_code_punctuation">,</span>
+    <span class="sf_code_keyword">typeof</span> floatNum<span class="sf_code_punctuation">,</span>
+    <span class="sf_code_keyword">typeof</span> singleQuoteStr<span class="sf_code_punctuation">,</span>
+    <span class="sf_code_keyword">typeof</span> doubleQuoteStr<span class="sf_code_punctuation">,</span>
+    <span class="sf_code_keyword">typeof</span> boolVar<span class="sf_code_punctuation">,</span>
+    <span class="sf_code_keyword">typeof</span> nullVar<span class="sf_code_punctuation">,</span>
+    <span class="sf_code_keyword">typeof</span> emptyVar
+    <span class="sf_code_punctuation">);</span></code></pre>
+<p><br></p>
+<p>[return]</p>
+<p><code class='code-inline'>number number string string boolean object undefined</code></p>
+<br>
+<h2>3.1.1 숫자</h2>
+<p>자바스크립트는 하나의 숫자형만 존재.</p>
+<p>자바스크립트에서는 모든 숫자를 64비트 부동 소수점 형태로 저장 (C언어의 double 타입과 유사)</p>
+<p>따라서 <code class='code-inline'>intNum</code> 과 <code class='code-inline'>floatNum</code> 변수 모두 <code class='code-inline'>typeof</code> 연산자의 결과값이 <code class='code-inline'>number</code> 타입이다.</p>
+<br>
+<p>자바스크립트에서는 정수형이 따로 없고, 모든 숫자를 실수로 처리 <span class='arrow'><svg width="11px" height="10px" viewBox="0 0 11 10" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >    <g id="right-arrow" >        <path d="M1.77635684e-14,5 L9,5" id="rod" stroke="#000000" stroke-width="2" ></path>        <path d="M11,5 L6,0.5 L6,9.5 L11,5 Z" id="point" fill="#000000"></path>    </g></svg></span> 나눗셈 연산을 할 때 주의</p>
+<br>
+<p>예제 3-2 자바스크립트 나눗셈 연산</p>
+<pre><code class='code-multiline' lang='javascript'><span class="sf_code_keyword">var</span> num <span class="sf_code_operator">=</span> <span class="sf_code_number">5</span> <span class="sf_code_operator">/</span> <span class="sf_code_number">2</span><span class="sf_code_punctuation">;</span>
+
+console<span class="sf_code_punctuation">.</span><span class="sf_code_function">log</span><span class="sf_code_punctuation">(</span>num<span class="sf_code_punctuation">);</span> <span class="sf_code_comment">// (출력값) 2.5</span>
+console<span class="sf_code_punctuation">.</span><span class="sf_code_function">log</span><span class="sf_code_punctuation">(</span>Math<span class="sf_code_punctuation">.</span><span class="sf_code_function">floor</span><span class="sf_code_punctuation">(</span>num<span class="sf_code_punctuation">));</span> <span class="sf_code_comment">// (출력값) 2</span></code></pre>
+<p><br></p>
+<p>정수 나누기 정수를 했더라도 5와 2가 둘 다 실수로 취급되므로 소수 부분까지 출력된다.</p>
+<p>소수 부분을 버린 정수 부분만을 구하고 싶다면, Math.floor() 자바스크립트 메서드를 사용.</p>
+<br>
+<h2>3.1.2 문자열</h2>
+<p>문자열은 작은 따음표(‘)나 큰 따옴표(“)로 생성</p>
+<p>자바스크립트에서는 C언어의 char 타입과 같이 문자 하나만을 별도로 나타내는 데이터 타입은 존재하지 않음.</p>
+<br>
+<p>주의점 : <b>한 번 정의된 문자열은 변하지 않는다.</b></p>
+<br>
+<p>예제 3-3 자바스크립트 문자열 예제</p>
+<pre><code class='code-multiline' lang='javascript'><span class="sf_code_comment">// str 문자열 생성</span>
+<span class="sf_code_keyword">var</span> str <span class="sf_code_operator">=</span> <span class="sf_code_string">'test'</span><span class="sf_code_punctuation">;</span>
+console<span class="sf_code_punctuation">.</span><span class="sf_code_function">log</span><span class="sf_code_punctuation">(</span>str<span class="sf_code_punctuation">[</span><span class="sf_code_number">0</span><span class="sf_code_punctuation">],</span> str<span class="sf_code_punctuation">[</span><span class="sf_code_number">1</span><span class="sf_code_punctuation">],</span> str<span class="sf_code_punctuation">[</span><span class="sf_code_number">2</span><span class="sf_code_punctuation">],</span> str<span class="sf_code_punctuation">[</span><span class="sf_code_number">3</span><span class="sf_code_punctuation">]);</span>
+
+<span class="sf_code_comment">// 문자열의 첫 글자를 대문자로 변경?</span>
+str<span class="sf_code_punctuation">[</span><span class="sf_code_number">0</span><span class="sf_code_punctuation">]</span> <span class="sf_code_operator">=</span> <span class="sf_code_string">'T'</span><span class="sf_code_punctuation">;</span>
+console<span class="sf_code_punctuation">.</span><span class="sf_code_function">log</span><span class="sf_code_punctuation">(</span>str<span class="sf_code_punctuation">);</span> <span class="sf_code_comment">// (출력값) test</span></code></pre>
+<p><br></p>
+<p>문자열은 문자 배열처럼 인덱스를 이용한 접근 가능</p>
+<p>문자열의 첫 글자를 대문자로 변경하고자 해도 에러는 발생하지 않는다.</p>
+<p>그러나 console.log(str) 문으로 문자열을 출력하면, 우리가 의도했던 출력결과인 ‘Test’가 아니라 원래의 문자열인 ‘test’가 출력된다. 즉, 자바스크립트에서는 한 번 생성된 문자열은 읽기만 가능하고 수정은 불가능하다.</p>
+<br>
+<h2>3.1.3 불린값</h2>
+<p>true와 false 값을 나타내는 불린 타입</p>
+<br>
+<h2>3.1.4 null과 undefined</h2>
+<p>이 두 타입은 모두 자바스크립트에서 ‘값이 비어있음’을 나타낸다.</p>
+<p>자바스크립트 환경 내에서 기본적으로 값이 할당되지 않은 변수는 undefined 타입이며, undefined 타입의 변수는 변수 자체의 값 또한 undefined.</p>
+<p><b>undefined는 타입이자, 값을 나타낸다.</b></p>
+<p>예제 3-1에서 emptyVar 변수에는 아무런 값이 할당되지 않았으므로 undefined 타입이 출력.</p>
+<p>반면 nullVar 변수와 같이 null 타입 변수의 경우는 개발자가 명시적으로 값이 비어있음을 나타내는 데 사용.</p>
+<br>
+<p><mark>null 타입 변수인 nullVar의 typeof 결과가 null이 아니라 object</mark></p>
+<p><span class='arrow'><svg width="11px" height="10px" viewBox="0 0 11 10" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >    <g id="right-arrow" >        <path d="M1.77635684e-14,5 L9,5" id="rod" stroke="#000000" stroke-width="2" ></path>        <path d="M11,5 L6,0.5 L6,9.5 L11,5 Z" id="point" fill="#000000"></path>    </g></svg></span> 자바스크립트에서는 null 타입 변수인지를 확인할 때 typeof 연산자를 사용하면 안 되고, 일치 연산자 (===)를 사용해서 변수의 값을 직접 확인해야 한다.</p>
+<br>
+<p>예제 3-4 null 타입 변수 체크</p>
+<pre><code class='code-multiline' lang='javascript'><span class="sf_code_comment">// null 타입 변수 생성</span>
+<span class="sf_code_keyword">var</span> nullVar <span class="sf_code_operator">=</span> <span class="sf_code_keyword">null</span><span class="sf_code_punctuation">;</span>
+
+console<span class="sf_code_punctuation">.</span><span class="sf_code_function">log</span><span class="sf_code_punctuation">(</span><span class="sf_code_keyword">typeof</span> nullVar <span class="sf_code_operator">===</span> <span class="sf_code_keyword">null</span><span class="sf_code_punctuation">);</span> <span class="sf_code_comment">// (출력값) false</span>
+console<span class="sf_code_punctuation">.</span><span class="sf_code_function">log</span><span class="sf_code_punctuation">(</span>nullVar <span class="sf_code_operator">===</span> <span class="sf_code_keyword">null</span><span class="sf_code_punctuation">);</span>        <span class="sf_code_comment">// (출력값) true</span></code></pre>
+<p><br></p>
+<br>
+<p><span class='hashtag'>#책/인사이드자바스크립트</span></p>
+        </div>
+        <script type="text/javascript">
+            (function() {
+
+    var doc_ols = document.getElementsByTagName("ol");
+
+    for ( i=0; i<doc_ols.length; i++) {
+
+        var ol_start = doc_ols[i].getAttribute("start") - 1;
+        doc_ols[i].setAttribute("style", "counter-reset:ol_counter " + ol_start + ";");
+
+    }
+
+})();
+
+        </script>
+        <style>
+            html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font:inherit;font-size:100%;vertical-align:baseline}html{line-height:1}ol,ul{list-style:none}table{border-collapse:collapse;border-spacing:0}caption,th,td{text-align:left;font-weight:normal;vertical-align:middle}q,blockquote{quotes:none}q:before,q:after,blockquote:before,blockquote:after{content:"";content:none}a img{border:none}article,aside,details,figcaption,figure,footer,header,hgroup,main,menu,nav,section,summary{display:block}*{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box}html{font-size:87.5%;line-height:1.57143em}html{font-size:14px;line-height:1.6em;-webkit-text-size-adjust:100%}body{background:#fcfcfc;color:#545454;text-rendering:optimizeLegibility;font-family:"AvenirNext-Regular"}a{color:#de4c4f;text-decoration:none}h1{font-family:"AvenirNext-Medium";color:#333;font-size:1.6em;line-height:1.3em;margin-bottom:.78571em}h2{font-family:"AvenirNext-Medium";color:#333;font-size:1.3em;line-height:1em;margin-bottom:.62857em}h3{font-family:"AvenirNext-Medium";color:#333;font-size:1.15em;line-height:1em;margin-bottom:.47143em}p{margin-bottom:1.57143em;hyphens:auto}hr{height:1px;border:0;background-color:#dedede;margin:-1px auto 1.57143em auto}ul,ol{margin-bottom:.31429em}ul ul,ul ol,ol ul,ol ol{margin-bottom:0px}ol{counter-reset:ol_counter}ol li:before{content:counter(ol_counter) ".";counter-increment:ol_counter;color:#e06e73;text-align:right;display:inline-block;min-width:1em;margin-right:0.5em}b,strong{font-family:"AvenirNext-Bold"}i,em{font-family:"AvenirNext-Italic"}code{font-family:"Menlo-Regular"}.text-overflow-ellipsis{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.sf_code_string,.sf_code_selector,.sf_code_attr-name,.sf_code_char,.sf_code_builtin,.sf_code_inserted{color:#D33905}.sf_code_comment,.sf_code_prolog,.sf_code_doctype,.sf_code_cdata{color:#838383}.sf_code_number,.sf_code_boolean{color:#0E73A2}.sf_code_keyword,.sf_code_atrule,.sf_code_rule,.sf_code_attr-value,.sf_code_function,.sf_code_class-name,.sf_code_class,.sf_code_regex,.sf_code_important,.sf_code_variable,.sf_code_interpolation{color:#0E73A2}.sf_code_property,.sf_code_tag,.sf_code_constant,.sf_code_symbol,.sf_code_deleted{color:#1B00CE}.sf_code_macro,.sf_code_entity,.sf_code_operator,.sf_code_url{color:#920448}.note-wrapper{max-width:46em;margin:0px auto;padding:1.57143em 3.14286em}.note-wrapper.spotlight-preview{overflow-x:hidden}u{text-decoration:none;background-image:linear-gradient(to bottom, rgba(0,0,0,0) 50%,#e06e73 50%);background-repeat:repeat-x;background-size:2px 2px;background-position:0 1.05em}s{color:#878787}p{margin-bottom:0.1em}hr{margin-bottom:0.7em;margin-top:0.7em}ul li{text-indent:-0.35em}ul li:before{content:"•";color:#e06e73;display:inline-block;margin-right:0.3em}ul ul{margin-left:1.25714em}ol li{text-indent:-1.45em}ol ol{margin-left:1.25714em}blockquote{display:block;margin-left:-1em;padding-left:0.8em;border-left:0.2em solid #e06e73}.todo-list ul{margin-left:1.88571em}.todo-list li{text-indent:-1.75em}.todo-list li:before{content:"";display:static;margin-right:0px}.todo-checkbox{text-indent:-1.7em}.todo-checkbox svg{margin-right:0.3em;position:relative;top:0.2em}.todo-checkbox svg #check{display:none}.todo-checkbox.todo-checked #check{display:inline}.todo-checkbox.todo-checked+.todo-text{text-decoration:line-through;color:#878787}.code-inline{display:inline;background:white;border:solid 1px #dedede;padding:0.2em 0.5em;font-size:0.9em}.code-multiline{display:block;background:white;border:solid 1px #dedede;padding:0.7em 1em;font-size:0.9em;overflow-x:auto}.hashtag{display:inline-block;color:white;background:#b8bfc2;padding:0.0em 0.5em;border-radius:1em;text-indent:0}.hashtag a{color:#fff}.address a{color:#545454;background-image:linear-gradient(to bottom, rgba(0,0,0,0) 50%,#0da35e 50%);background-repeat:repeat-x;background-size:2px 2px;background-position:0 1.05em}.address svg{position:relative;top:0.2em;display:inline-block;margin-right:0.2em}.color-preview{display:inline-block;width:1em;height:1em;border:solid 1px rgba(0,0,0,0.3);border-radius:50%;margin-right:0.1em;position:relative;top:0.2em;white-space:nowrap}.color-code{margin-right:0.2em;font-family:"Menlo-Regular";font-size:0.9em}.color-hash{opacity:0.4}.ordered-list-number{color:#e06e73;text-align:right;display:inline-block;min-width:1em}.arrow svg{position:relative;top:0.08em;display:inline-block;margin-right:0.15em;margin-left:0.15em}.arrow svg #rod{stroke:#545454}.arrow svg #point{fill:#545454}mark{color:inherit;display:inline;padding:0.2em 0.5em;background-color:#fcffc0}img{max-width:100%;height:auto}
+
+        </style>
+    </body>
+</html>
